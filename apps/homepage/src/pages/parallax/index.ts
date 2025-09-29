@@ -119,6 +119,12 @@ class ParallaxPage implements PageController {
   }
 
   private initialise(): void {
+    const startButton = this.startButton
+    const stopButton = this.stopButton
+    if (!startButton || !stopButton) {
+      throw new Error('Parallax controls are not ready yet.')
+    }
+
     this.nativeFaceSupported = FaceTracker.isSupported()
     this.faceMeshSupported = FaceMeshTracker.isSupported()
     this.faceSupported = this.nativeFaceSupported || this.faceMeshSupported
@@ -133,19 +139,22 @@ class ParallaxPage implements PageController {
 
     if (!this.faceSupported && !this.mouseSupported) {
       this.setStatus('Neither face nor mouse tracking is supported in this environment.', 'error')
-      this.startButton!.disabled = true
-      this.stopButton!.disabled = true
+      startButton.disabled = true
+      stopButton.disabled = true
       return
     }
 
     const kind = this.getSelectedTrackerKind()
     const label = kind === 'face' ? this.getFaceTrackerLabel() : 'mouse tracking'
     this.setStatus(`Ready to start. Source: ${label}.`, 'idle')
-    this.startButton!.disabled = false
+    startButton.disabled = false
   }
 
   private handleStart = async (): Promise<void> => {
-    if (this.startButton?.disabled || !this.scene) {
+    const startButton = this.startButton
+    const stopButton = this.stopButton
+
+    if (!startButton || !stopButton || startButton.disabled || !this.scene) {
       return
     }
 
@@ -156,8 +165,8 @@ class ParallaxPage implements PageController {
     }
 
     try {
-      this.startButton.disabled = true
-      this.stopButton!.disabled = true
+      startButton.disabled = true
+      stopButton.disabled = true
       const tracker = this.ensureTracker(kind)
       const preparingMessage =
         kind === 'face'
@@ -176,28 +185,36 @@ class ParallaxPage implements PageController {
             : 'Move your head to explore depth.'
           : 'Move the cursor to explore depth.'
       this.setStatus(`Parallax active. ${activeDescription}`, 'running')
-      this.stopButton!.disabled = false
+      stopButton.disabled = false
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Unknown error'
       this.setStatus(`Unable to start parallax: ${message}`, 'error')
       console.error('[Homepage:Parallax] Failed to start tracker', error)
-      this.startButton!.disabled = false
+      startButton.disabled = false
     }
   }
 
   private handleStop = (): void => {
+    const startButton = this.startButton
+    const stopButton = this.stopButton
+    if (!startButton || !stopButton) {
+      return
+    }
+
     if (!this.sceneInstance || !this.sceneInstance.isRunning()) {
       return
     }
 
     this.sceneInstance.stop()
     this.setStatus('Parallax paused.', 'idle')
-    this.startButton!.disabled = false
-    this.stopButton!.disabled = true
+    startButton.disabled = false
+    stopButton.disabled = true
   }
 
   private handleTrackerChange = (): void => {
-    if (!this.trackerSelect) {
+    const startButton = this.startButton
+    const stopButton = this.stopButton
+    if (!this.trackerSelect || !startButton || !stopButton) {
       return
     }
 
@@ -206,8 +223,8 @@ class ParallaxPage implements PageController {
     if (this.sceneInstance?.isRunning()) {
       this.sceneInstance.stop()
       this.setStatus('Parallax paused. Tracker changed.', 'idle')
-      this.stopButton!.disabled = true
-      this.startButton!.disabled = false
+      stopButton.disabled = true
+      startButton.disabled = false
     }
 
     this.sceneInstance?.destroy()
@@ -222,10 +239,10 @@ class ParallaxPage implements PageController {
     const label = kind === 'face' ? this.getFaceTrackerLabel() : 'mouse tracking'
     if (!this.isTrackerSupported(kind)) {
       this.setStatus(`${label} is unavailable in this browser.`, 'error')
-      this.startButton!.disabled = true
+      startButton.disabled = true
     } else {
       this.setStatus(`Ready to start. Source: ${label}.`, 'idle')
-      this.startButton!.disabled = false
+      startButton.disabled = false
     }
   }
 
