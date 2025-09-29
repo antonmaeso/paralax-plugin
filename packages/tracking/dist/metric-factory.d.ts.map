@@ -1,0 +1,1 @@
+{"version":3,"file":"metric-factory.d.ts","sourceRoot":"","sources":["../src/metric-factory.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,aAAa,EAAyB,MAAM,iBAAiB,CAAA;AAC3E,OAAO,KAAK,EAAE,kBAAkB,EAAmB,MAAM,SAAS,CAAA;AAElE,wBAAgB,YAAY,CAC1B,KAAK,EAAE,gBAAgB,EACvB,SAAS,EAAE,aAAa,EACxB,SAAS,EAAE,MAAM,GAChB,kBAAkB,GAAG,IAAI,CAsC3B"}
