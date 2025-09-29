@@ -1,0 +1,59 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage
+.nyc_output
+
+# build output
+dist
+build
+
+# Compiled source
+*.tsbuildinfo
+
+# dependencies
+node_modules
+
+# IDE files
+.DS_Store
+.vscode/*
+!.vscode/launch.json
+!.vscode/settings.json
+.node_modules/*
+
+# Workspace packages
+packages/parallax/node_modules/
+packages/parallax/dist/
+packages/tracking/node_modules/
+packages/tracking/dist/
+
+# Apps
+apps/homepage/node_modules/
+apps/tracking/node_modules/
+apps/tracking/dist/
+
+# Env files
+.env
+.env.*
+
+# Misc
+.npm
+.cache
+.parcel-cache
+*.swp
+*.swo
