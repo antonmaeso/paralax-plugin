@@ -14,7 +14,7 @@ Both ship ESM + type definitions compiled with TypeScript. Follow the steps belo
 1. **Node & pnpm** – Use the versions defined in `.nvmrc`/`packageManager` (`Node 20+, pnpm 10+`).
 2. **Auth token** – Create a GitHub personal access token (classic) with the `write:packages` scope and add it to your local config:
    ```bash
-   npm config set @paralax-labs:registry https://npm.pkg.github.com
+   npm config set @antonmaeso:registry https://npm.pkg.github.com
    npm config set //npm.pkg.github.com/:_authToken <TOKEN>
    ```
 3. **Clean workspace** – Ensure `git status` is clean and all tests pass.
@@ -26,13 +26,13 @@ Both ship ESM + type definitions compiled with TypeScript. Follow the steps belo
 1. **Install & build**
    ```bash
    pnpm install
-   pnpm --filter parallax build
-   pnpm --filter tracking build
+   pnpm --filter @antonmaeso/parallax build
+   pnpm --filter @antonmaeso/tracking build
    ```
 2. **Run unit tests**
    ```bash
-   pnpm --filter parallax test
-   pnpm --filter tracking test
+   pnpm --filter @antonmaeso/parallax test
+   pnpm --filter @antonmaeso/tracking test
    ```
 3. **Version bump** – Update the package version in `packages/<name>/package.json`. Stick to semantic versioning. If publishing both packages, bump them together.
 4. **Changelog / docs** – Update the relevant README or CHANGELOG with release notes.
@@ -81,6 +81,6 @@ pnpm publish --dry-run
 ## Post Publish
 
 1. Verify the package appears in the GitHub Packages UI (or npm registry).
-2. Update consumers (internal apps) to the new version via `pnpm up parallax@latest tracking@latest`.
+2. Update consumers (internal apps) to the new version via `pnpm up @antonmaeso/parallax@latest @antonmaeso/tracking@latest`.
 3. Announce the release with the changelog summary.
 

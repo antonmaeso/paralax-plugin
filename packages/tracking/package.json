@@ -1,5 +1,5 @@
 {
-  "name": "@paralax-labs/tracking",
+  "name": "@antonmaeso/tracking",
   "version": "0.1.0",
   "description": "Face tracking utilities for Paralax projects",
   "type": "module",
