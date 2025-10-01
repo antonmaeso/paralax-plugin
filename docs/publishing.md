@@ -14,7 +14,7 @@ Both ship ESM + type definitions compiled with TypeScript. Follow the steps belo
 1. **Node & pnpm** – Use the versions defined in `.nvmrc`/`packageManager` (`Node 20+, pnpm 10+`).
 2. **Auth token** – Create a GitHub personal access token (classic) with the `write:packages` scope and add it to your local config:
    ```bash
-   npm config set @paralax-plugin:registry https://npm.pkg.github.com
+   npm config set @paralax-labs:registry https://npm.pkg.github.com
    npm config set //npm.pkg.github.com/:_authToken <TOKEN>
    ```
 3. **Clean workspace** – Ensure `git status` is clean and all tests pass.
