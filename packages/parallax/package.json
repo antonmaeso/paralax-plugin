@@ -1,5 +1,5 @@
 {
-  "name": "@paralax-plugin/parallax",
+  "name": "@paralax-labs/parallax",
   "version": "0.1.0",
   "description": "Face-driven parallax utilities for Paralax experiments",
   "type": "module",
