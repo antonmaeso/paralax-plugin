@@ -1,5 +1,5 @@
 {
-  "name": "parallax",
+  "name": "@paralax-plugin/parallax",
   "version": "0.1.0",
   "description": "Face-driven parallax utilities for Paralax experiments",
   "type": "module",
@@ -13,10 +13,16 @@
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
   "files": ["dist"],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json"
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest"
   },
   "devDependencies": {
-    "typescript": "~5.8.3"
+    "typescript": "~5.8.3",
+    "vitest": "^2.1.4"
   }
 }
